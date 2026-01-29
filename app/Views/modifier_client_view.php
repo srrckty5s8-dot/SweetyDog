@@ -9,7 +9,7 @@
 <div class="container">
   <h2>✏️ Modifier le client</h2>
 
-  <form action="<?= route('clients.update', ['id' => $client['id_proprietaire']]) ?>" method="POST">
+  <form action="<?= route('clients.update', ['id' => $proprio['id_proprietaire']]) ?>" method="POST">
     <input type="hidden" name="id_proprietaire" value="<?= (int)$proprio['id_proprietaire'] ?>">
 
     <div class="form-row">

@@ -2,6 +2,23 @@
 
 class Animal
 {
+    public static function getListForAppointments(): array
+    {
+        $pdo = Database::getConnection();
+
+        $sql = "SELECT a.id_animal,
+                       a.nom_animal,
+                       a.race,
+                       p.nom as nom_client,
+                       p.prenom as prenom_client
+                FROM Animaux a
+                LEFT JOIN Proprietaires p ON a.id_proprietaire = p.id_proprietaire
+                ORDER BY a.nom_animal ASC";
+
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    }
+
     public static function findWithOwner(int $id): ?array
     {
         if ($id <= 0) {
@@ -44,5 +61,17 @@ class Animal
             'steril' => $data['steril'],
             'id' => $id,
         ]);
+    }
+
+    public static function delete(int $id): bool
+    {
+        if ($id <= 0) {
+            return false;
+        }
+
+        $pdo = Database::getConnection();
+
+        $stmt = $pdo->prepare("DELETE FROM Animaux WHERE id_animal = :id");
+        return $stmt->execute(['id' => $id]);
     }
 }
