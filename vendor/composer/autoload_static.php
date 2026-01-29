@@ -88,7 +88,6 @@ class ComposerStaticInit99d45ceaef661ebbec01dabc3550cdbd
         'fe43ca06499ac37bc2dedd823af71eb5' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zip.php',
         '356736db98a6834f0a886b8d509b0ecd' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zlib.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'e320f53bb3364b7ed572ecc5ef33c5cf' => __DIR__ . '/../..' . '/app/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -166,21 +165,9 @@ class ComposerStaticInit99d45ceaef661ebbec01dabc3550cdbd
     );
 
     public static $classMap = array (
-        'Animal' => __DIR__ . '/../..' . '/app/Models/Animal.php',
-        'AnimalController' => __DIR__ . '/../..' . '/app/Controllers/AnimalController.php',
-        'AuthController' => __DIR__ . '/../..' . '/app/Controllers/AuthController.php',
-        'Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
-        'ClientController' => __DIR__ . '/../..' . '/app/Controllers/ClientController.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Controller' => __DIR__ . '/../..' . '/app/Core/Controller.php',
-        'Database' => __DIR__ . '/../..' . '/app/Core/Database.php',
         'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
-        'InvoiceController' => __DIR__ . '/../..' . '/app/Controllers/InvoiceController.php',
-        'Prestation' => __DIR__ . '/../..' . '/app/Models/Prestation.php',
-        'PrestationController' => __DIR__ . '/../..' . '/app/Controllers/PrestationController.php',
-        'RendezVous' => __DIR__ . '/../..' . '/app/Models/RendezVous.php',
-        'Router' => __DIR__ . '/../..' . '/app/Core/Router.php',
         'Safe\\DateTime' => __DIR__ . '/..' . '/thecodingmachine/safe/lib/DateTime.php',
         'Safe\\DateTimeImmutable' => __DIR__ . '/..' . '/thecodingmachine/safe/lib/DateTimeImmutable.php',
         'Safe\\Exceptions\\ApacheException' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/Exceptions/ApacheException.php',
@@ -264,7 +251,6 @@ class ComposerStaticInit99d45ceaef661ebbec01dabc3550cdbd
         'Safe\\Exceptions\\YazException' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/Exceptions/YazException.php',
         'Safe\\Exceptions\\ZipException' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/Exceptions/ZipException.php',
         'Safe\\Exceptions\\ZlibException' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/Exceptions/ZlibException.php',
-        'Soin' => __DIR__ . '/../..' . '/app/Models/Soin.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
