@@ -1,0 +1,6 @@
+{
+    "require": {
+        "atgp/factur-x": "^2.5",
+        "dompdf/dompdf": "^3.1"
+    }
+}
