@@ -1,4 +1,14 @@
 {
+    "autoload": {
+        "classmap": [
+            "app/Core",
+            "app/Controllers",
+            "app/Models"
+        ],
+        "files": [
+            "app/helpers.php"
+        ]
+    },
     "require": {
         "atgp/factur-x": "^2.5",
         "dompdf/dompdf": "^3.1"

@@ -25,49 +25,21 @@
 // Utilisée pour l'authentification, les messages flash, etc.
 session_start();
 
-// ========== 2. ENREGISTRER L'AUTOLOADER ==========
+// ========== 2. ENREGISTRER L'AUTOLOADER COMPOSER ==========
 /**
- * Chargement automatique des classes PHP
+ * Chargement automatique des classes via Composer
  * 
- * Quand on fait : new ClientController();
- * PHP cherche automatiquement le fichier ClientController.php
- * 
- * Ordre de recherche :
- * 1. app/Core/ClientController.php
- * 2. app/Controllers/ClientController.php
- * 3. app/Models/ClientController.php
- * 
- * Cela évite d'écrire require_once pour chaque classe
+ * Les classes du dossier app/ sont chargées par classmap
+ * Les helpers sont chargés via la directive "files" de composer.json
  */
-spl_autoload_register(function ($class) {
-    // Dossier de base de l'app
-    $base = __DIR__ . '/../app/';
+$autoloadPath = __DIR__ . '/../vendor/autoload.php';
+if (!file_exists($autoloadPath)) {
+    http_response_code(500);
+    die('Autoloader Composer introuvable. Lancez "composer install" ou "composer dump-autoload".');
+}
+require_once $autoloadPath;
 
-    // Chemins à chercher pour chaque classe
-    $paths = [
-        $base . 'Core/' . $class . '.php',           // Classe core (Router, Controller, Database)
-        $base . 'Controllers/' . $class . '.php',    // Classe contrôleur (ClientController, etc.)
-        $base . 'Models/' . $class . '.php',         // Classe modèle (Client, Animal, etc.)
-    ];
-
-    // Parcourir chaque chemin
-    foreach ($paths as $file) {
-        if (file_exists($file)) {
-            // Fichier trouvé, le charger et arrêter
-            require_once $file;
-            return;
-        }
-    }
-});
-
-// ========== 3. CHARGER LES HELPERS ==========
-/**
- * Les fonctions helpers (route(), redirect(), param(), etc.) 
- * sont chargées ici pour être disponibles partout dans l'app
- */
-require_once __DIR__ . '/../app/helpers.php';
-
-// ========== 4. CRÉER ET LANCER LE ROUTEUR ==========
+// ========== 3. CRÉER ET LANCER LE ROUTEUR ==========
 /**
  * Créer une instance du routeur
  * Le routeur va :
@@ -82,7 +54,7 @@ $router = new Router();
 // route(), redirect(), isCurrentRoute() ont besoin du routeur
 $GLOBALS['router'] = $router;
 
-// ========== 5. LANCER LE ROUTAGE ==========
+// ========== 4. LANCER LE ROUTAGE ==========
 /**
  * Exécuter le routeur
  * C'est ici que l'application fait vraiment quelque chose

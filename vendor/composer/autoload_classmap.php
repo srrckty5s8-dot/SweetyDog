@@ -6,9 +6,21 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Animal' => $baseDir . '/app/Models/Animal.php',
+    'AnimalController' => $baseDir . '/app/Controllers/AnimalController.php',
+    'AuthController' => $baseDir . '/app/Controllers/AuthController.php',
+    'Client' => $baseDir . '/app/Models/Client.php',
+    'ClientController' => $baseDir . '/app/Controllers/ClientController.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Controller' => $baseDir . '/app/Core/Controller.php',
+    'Database' => $baseDir . '/app/Core/Database.php',
     'Dompdf\\Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
+    'InvoiceController' => $baseDir . '/app/Controllers/InvoiceController.php',
+    'Prestation' => $baseDir . '/app/Models/Prestation.php',
+    'PrestationController' => $baseDir . '/app/Controllers/PrestationController.php',
+    'RendezVous' => $baseDir . '/app/Models/RendezVous.php',
+    'Router' => $baseDir . '/app/Core/Router.php',
     'Safe\\DateTime' => $vendorDir . '/thecodingmachine/safe/lib/DateTime.php',
     'Safe\\DateTimeImmutable' => $vendorDir . '/thecodingmachine/safe/lib/DateTimeImmutable.php',
     'Safe\\Exceptions\\ApacheException' => $vendorDir . '/thecodingmachine/safe/generated/Exceptions/ApacheException.php',
@@ -92,4 +104,5 @@ return array(
     'Safe\\Exceptions\\YazException' => $vendorDir . '/thecodingmachine/safe/generated/Exceptions/YazException.php',
     'Safe\\Exceptions\\ZipException' => $vendorDir . '/thecodingmachine/safe/generated/Exceptions/ZipException.php',
     'Safe\\Exceptions\\ZlibException' => $vendorDir . '/thecodingmachine/safe/generated/Exceptions/ZlibException.php',
+    'Soin' => $baseDir . '/app/Models/Soin.php',
 );
