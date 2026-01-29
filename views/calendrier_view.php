@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Agenda | SweetyDog</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(url('assets/style.css')) ?>">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
     <style>
         #calendar { max-width: 1100px; margin: 20px auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
@@ -21,7 +21,7 @@
 <div class="container-large">
     <div class="header-flex" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
         <h2>📅 Agenda SweetyDog</h2>
-        <a href="liste_clients.php" class="btn-edit" style="text-decoration:none;">← Retour</a>
+        <a href="<?= htmlspecialchars(route('clients.index')) ?>" class="btn-edit" style="text-decoration:none;">← Retour</a>
     </div>
 
     <div id="calendar"></div>
@@ -32,7 +32,7 @@
         <span onclick="document.getElementById('modalRDV').style.display='none'" style="position:absolute; right:20px; top:15px; cursor:pointer; font-size:24px;">&times;</span>
         <h3>Nouveau Rendez-vous</h3>
         
-        <form action="actions/ajouter_rdv.php" method="POST" id="formRDV">
+        <form action="<?= htmlspecialchars(route('appointments.create')) ?>" method="POST" id="formRDV">
             
             <label>Animal (Recherche par nom ou propriétaire)</label>
             <input list="liste_animaux_dl" id="animal_input" class="search-input" placeholder="Tapez le nom du chien..." required autocomplete="off">
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         eventClick: function(info) {
             if (confirm("Voulez-vous supprimer le rendez-vous de " + info.event.title + " ?")) {
-                window.location.href = "actions/supprimer_rdv.php?id=" + info.event.id;
+                deleteAppointment(info.event.id);
             }
         }
     });
@@ -119,6 +119,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         hiddenInput.value = ""; // Vide si rien ne correspond
     });
+
+    // Suppression via POST (MVC)
+    function deleteAppointment(id) {
+        var templateUrl = <?= json_encode(route('appointments.delete', ['id' => '__ID__'])) ?>;
+        var deleteUrl = templateUrl.replace('__ID__', encodeURIComponent(id));
+
+        fetch(deleteUrl, { method: 'POST' })
+            .then(function() { window.location.reload(); })
+            .catch(function() {
+                alert("Erreur lors de la suppression du rendez-vous.");
+            });
+    }
 
     // Blocage si l'animal n'est pas valide
     document.getElementById('formRDV').addEventListener('submit', function(e) {
