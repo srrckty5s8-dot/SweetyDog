@@ -538,6 +538,8 @@ foreach ($clients as $c) {
 </div>
 
 <script>
+    const editTemplate = <?= json_encode(route('clients.edit', ['id' => '__ID__'])) ?>;
+
     function openClientInfo(id, fullName, tel, email, adresse){
         document.getElementById('ci_title').textContent = '👤 ' + (fullName || 'Infos client');
 
@@ -555,15 +557,9 @@ foreach ($clients as $c) {
         mailBtn.style.opacity = email ? '1' : '0.4';
         mailBtn.style.pointerEvents = email ? 'auto' : 'none';
 
-        <script>const editTemplate = "<?= route('clients.edit', ['id' => '__ID__']) ?>";  function openClientInfo(id, fullName, tel, email, adresse){
-  // ... le reste inchangé ...
-  document.getElementById('ci_edit').href = editTemplate.replace('__ID__', String(id));
-  document.getElementById('clientInfoModal').style.display = 'flex';
-}
-<script>
-function openClientInfo(){
-    document.getElementById('clientInfoModal').style.display = 'flex';
-}
+        document.getElementById('ci_edit').href = editTemplate.replace('__ID__', String(id));
+        document.getElementById('clientInfoModal').style.display = 'flex';
+    }
 
 function closeClientInfo(){
     document.getElementById('clientInfoModal').style.display = 'none';
