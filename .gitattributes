@@ -1,0 +1,3 @@
+vendor/composer/autoload_classmap.php merge=ours
+vendor/composer/autoload_files.php merge=ours
+vendor/composer/autoload_static.php merge=ours
