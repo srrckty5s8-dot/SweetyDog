@@ -31,19 +31,16 @@ if (!$animal) { die("Animal introuvable."); }
 $query_hist = $bdd->prepare("SELECT * FROM Prestations WHERE id_animal = ? ORDER BY date_soin DESC");
 $query_hist->execute([$id_animal]);
 $historique = $query_hist->fetchAll(PDO::FETCH_ASSOC);
-
-// 3. LOGIQUE POUR LE TÉLÉCHARGEMENT AUTOMATIQUE
 // 3. LOGIQUE POUR LE TÉLÉCHARGEMENT AUTOMATIQUE
 $download_link = null;
 $nomFichierPDF = null;
 
 if (isset($_GET['success']) && $_GET['success'] == 1 && !empty($historique)) {
-    // On récupère la prestation la plus récente (celle qu'on vient de créer)
+    // On récupère la prestation la plus récente qui vient d'être encaissée
     $last_prestation = $historique[0]; 
     $idFacture = date('Y') . '-' . $last_prestation['id_prestation'];
-    $nomFichierPDF = "Facture_" . $idFacture . ".pdf";
+    $nomFichierPDF = "Facture_SweetyDog_" . $idFacture . ".pdf";
     
-    // On vérifie si le fichier existe physiquement dans le dossier
     if (file_exists(__DIR__ . '/factures/' . $nomFichierPDF)) {
         $download_link = 'factures/' . $nomFichierPDF;
     }
