@@ -1,5 +1,5 @@
 <?php
-require_once 'api_piste_handler.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $piste = new PisteService(__DIR__ . '/code.env');
 
