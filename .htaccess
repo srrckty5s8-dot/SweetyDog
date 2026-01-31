@@ -2,6 +2,9 @@
   RewriteEngine On
   RewriteBase /sweetydog/
 
+  # Canonicaliser les URLs pour ne pas exposer /public
+  RewriteRule ^public/(.*)$ /sweetydog/$1 [R=301,L]
+
   # Si le fichier ou dossier existe à la racine, on le sert
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
