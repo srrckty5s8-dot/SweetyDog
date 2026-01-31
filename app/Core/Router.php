@@ -59,8 +59,14 @@ class Router
 
         // Retirer le basePath /Sweetydog/public (ou /Sweetydog)
         $scriptDir = str_replace('\\', '/', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
+        $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '';
         if ($scriptDir !== '' && substr($scriptDir, -7) === '/public') {
-            $scriptDir = substr($scriptDir, 0, -7);
+            $publicPath = $scriptDir;
+            $basePath = $publicPath;
+            if ($requestPath === '' || strpos($requestPath, $publicPath) !== 0) {
+                $basePath = substr($publicPath, 0, -7);
+            }
+            $scriptDir = $basePath;
         }
         if ($scriptDir && $scriptDir !== '/' && strpos($url, $scriptDir) === 0) {
             $url = substr($url, strlen($scriptDir));
@@ -186,8 +192,14 @@ class Router
 
         // Préfixe basePath (/Sweetydog)
         $basePath = str_replace('\\', '/', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
+        $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '';
         if ($basePath !== '' && substr($basePath, -7) === '/public') {
-            $basePath = substr($basePath, 0, -7);
+            $publicPath = $basePath;
+            $resolvedPath = $publicPath;
+            if ($requestPath === '' || strpos($requestPath, $publicPath) !== 0) {
+                $resolvedPath = substr($publicPath, 0, -7);
+            }
+            $basePath = $resolvedPath;
         }
         if ($basePath && $basePath !== '/') {
             return $basePath . $url;
