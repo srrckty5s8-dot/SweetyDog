@@ -8,5 +8,5 @@
   RewriteRule ^ - [L]
 
   # Sinon -> on envoie vers public/
-  RewriteRule ^ public/$1 [L]
+  RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
