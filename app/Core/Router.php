@@ -73,6 +73,10 @@ class Router
             $url = substr($url, strlen($scriptDir));
         }
 
+        if ($url === '/index.php' || strpos($url, '/index.php/') === 0) {
+            $url = substr($url, strlen('/index.php'));
+        }
+
         return $url ?: '/';
     }
 
